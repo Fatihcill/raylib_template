@@ -8,6 +8,6 @@ cd ..
 code . ## build with cmake and debug.
 ```
 
-im developing a game rn. AND I haven't finished the game yet.
+raylib cmake template.
 
 I will update readme after finish the project
