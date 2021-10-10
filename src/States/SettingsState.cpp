@@ -1,4 +1,4 @@
-#include "stdafx.hpp"
+/*#include "stdafx.hpp"
 #include <GLFW/glfw3.h>
 #include "SettingsState.hpp"
 
@@ -75,11 +75,6 @@ void SettingsState::initGui()
 
 void SettingsState::resetGui()
 {
-    /*
-	 * Clears the GUI elements and re-initialises the GUI.
-	 *
-	 * @return void
-	 */
 
     auto it = this->buttons.begin();
     for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
@@ -131,7 +126,6 @@ void SettingsState::updateInput(const float &dt)
 
 void SettingsState::updateGui(const float &dt)
 {
-    /*Updates all the gui elements in the state and handle their functionlaity.*/
     //Buttons
     for (auto &it : this->buttons)
     {
@@ -194,4 +188,4 @@ void SettingsState::render()
     ss << this->mousePosView.x << " " << this->mousePosView.y;
     mouseText.setString(ss.str());
     target->draw(mouseText);
-}
+}*/

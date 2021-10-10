@@ -1,7 +1,7 @@
 # RaylibBestGameEver
 Installation:
 ```
-git clone https://github.com/Fatihcil16/RaylibBestGameEver.git
+git clone https://github.com/Fatihcil16/raylib_template.git
 cd lib
 git clone https://github.com/raysan5/raylib.git
 cd ..
