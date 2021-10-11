@@ -12,7 +12,6 @@ Game::Game()
 
 Game::~Game()
 {
-
     while (!this->states.empty())
     {
         delete this->states.top();

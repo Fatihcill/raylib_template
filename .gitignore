@@ -6,6 +6,3 @@ bin/
 build/
 out/
 CMakeSettings.json
-
-#LIBRARIES
-libs/raylib/
