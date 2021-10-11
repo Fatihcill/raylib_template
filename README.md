@@ -1,4 +1,8 @@
-# RaylibBestGameEver
+# raylib_template
+Requirements;
+-C++17
+-Cmake
+
 Installation:
 ```
 git clone https://github.com/Fatihcil16/raylib_template.git
