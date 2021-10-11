@@ -15,3 +15,6 @@ code . ## build with cmake and debug.
 raylib cmake template.
 
 I will update readme after finish the project
+
+
+SETTINGS Hooked up to [raysettings](https://github.com/swan-gh/raysettings)

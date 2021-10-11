@@ -1,6 +1,9 @@
-#include "stdafx.hpp"
-#include "SettingsMenuState.hpp"
+#include "SettingsWindow.hpp"
+
+#include <algorithm>
+
 #include "extras/raygui.h"
+#include "WinWrapper.hpp"
 
 namespace raysettings
 {
@@ -75,50 +78,18 @@ namespace raysettings
         }
     }
 
-    SettingsMenuState::SettingsMenuState(StateData *state_data)
-        : State(state_data)
+    SettingsWindow::SettingsWindow()
+        : m_layout(1, 1)
     {
-        this->initVariables();
-        this->initFonts();
+ 
     }
 
-    SettingsMenuState::~SettingsMenuState()
+    void SettingsWindow::InitState() 
     {
-    }
-
-    void SettingsMenuState::initVariables()
-    {
-        this->backgroundTexture = LoadTexture(ASSETS_PATH "menu/background.png");
-
         m_state = DetermineState();
         m_layout = SettingsWindowLayout(m_state.m_resolution->x, m_state.m_resolution->y);
         UpdateFields();
-
-        float const scaleX = p_targetWidth / 1920.f;
-        float const scaleY = p_targetHeight / 1080.f;
-
-        m_anchor01.x *= scaleX;
-        m_anchor01.y *= scaleY;
-
-        m_anchor02.x *= scaleX;
-        m_anchor02.y *= scaleY;
-
-        m_anchor03.x *= scaleX;
-        m_anchor03.y *= scaleY;
-
-        for (Rectangle &rec : m_layoutRecs)
-        {
-            rec.x *= scaleX;
-            rec.width *= scaleX;
-            rec.y *= scaleY;
-            rec.height *= scaleY;
-        }
     }
-
-    void SettingsMenuState::initFonts()
-    {
-    }
-
     SettingsState DetermineState()
     {
         SettingsState determinedState{};
@@ -199,69 +170,7 @@ namespace raysettings
         return determinedState;
     }
 
-    //Functions
-    void SettingsMenuState::updateInput(const float &dt)
-    {
-    }
-
-    void SettingsMenuState::updateGui(const float &dt)
-    {
-        //Scale components to the active resolution
-        SettingsState nextState = m_state;
-
-        WindowBox000Active = !GuiWindowBox(m_layout.m_layoutRecs[0], "SETTINGS");
-
-        GuiGroupBox(m_layout.m_layoutRecs[1], "VIDEO SETTINGS");
-        GuiLabel(m_layout.m_layoutRecs[3], "DISPLAY:");
-        GuiLabel(m_layout.m_layoutRecs[5], "VSYNC:");
-        GuiLabel(m_layout.m_layoutRecs[7], "RESOLUTION:");
-        GuiLabel(m_layout.m_layoutRecs[9], "WINDOW MODE:");
-        GuiGroupBox(m_layout.m_layoutRecs[10], "AUDIO SETTINGS");
-        nextState.m_masterVolumePercentage = GuiSlider(m_layout.m_layoutRecs[11], NULL, NULL, m_state.m_masterVolumePercentage, 0, 100);
-        GuiLabel(m_layout.m_layoutRecs[12], "MASTER:");
-        nextState.m_musicVolumePercentage = GuiSlider(m_layout.m_layoutRecs[13], NULL, NULL, m_state.m_musicVolumePercentage, 0, 100);
-        GuiLabel(m_layout.m_layoutRecs[14], "MUSIC:");
-        nextState.m_fxVolumePercentage = GuiSlider(m_layout.m_layoutRecs[15], NULL, NULL, m_state.m_fxVolumePercentage, 0, 100);
-        GuiLabel(m_layout.m_layoutRecs[16], "FX:");
-        nextState.m_vsyncActive = GuiCheckBox(m_layout.m_layoutRecs[4], NULL, m_state.m_vsyncActive);
-
-        bool changeFound = false;
-
-        if (GuiDropdownBox(m_layout.m_layoutRecs[2], m_displayStrings.c_str(), &nextState.m_activeDisplay, DropdownBox002EditMode))
-        {
-            DropdownBox002EditMode = !DropdownBox002EditMode;
-        }
-
-        int resIndex = nextState.m_resolution - std::begin(c_resolutionPairs);
-        if (GuiDropdownBox(m_layout.m_layoutRecs[6], m_resolutionStrings.c_str(), &resIndex, DropdownBox006EditMode))
-        {
-            DropdownBox006EditMode = !DropdownBox006EditMode;
-        }
-        nextState.m_resolution = &(c_resolutionPairs[resIndex]);
-
-        int windowModeIndex = DropdownBox008Active;
-        if (GuiDropdownBox(m_layout.m_layoutRecs[8], c_windowModeStrings, &windowModeIndex, DropdownBox008EditMode))
-        {
-            DropdownBox008EditMode = !DropdownBox008EditMode;
-        }
-        nextState.m_windowMode = static_cast<WindowMode>(windowModeIndex);
-
-        //WORKAROUND: Render last to bring to front
-        if (DropdownBox002EditMode)
-        {
-            GuiDropdownBox(m_layout.m_layoutRecs[2], m_displayStrings.c_str(), &DropdownBox002Active, DropdownBox002EditMode);
-        }
-        if (DropdownBox006EditMode)
-        {
-            GuiDropdownBox(m_layout.m_layoutRecs[6], m_resolutionStrings.c_str(), &DropdownBox006Active, DropdownBox006EditMode);
-        }
-        if (DropdownBox008EditMode)
-        {
-            GuiDropdownBox(m_layout.m_layoutRecs[8], c_windowModeStrings, &DropdownBox008Active, DropdownBox008EditMode);
-        }
-    }
-
-    void SettingsMenuState::UpdateState(SettingsState p_newState)
+    void SettingsWindow::UpdateState(SettingsState p_newState)
     {
         //== Update Phase ===
 
@@ -420,7 +329,7 @@ namespace raysettings
             SetWindowState(setFlags);
 
             SetWindowSize(m_state.m_resolution->x, m_state.m_resolution->y);
-            m_layout = SettingsMenuState{m_state.m_resolution->x, m_state.m_resolution->y};
+            m_layout = SettingsWindowLayout{m_state.m_resolution->x, m_state.m_resolution->y};
         }
 
         if (audioChangeDetected)
@@ -428,7 +337,7 @@ namespace raysettings
         }
     }
 
-    void SettingsMenuState::UpdateFields()
+    void SettingsWindow::UpdateFields()
     {
         m_displayNames.clear();
         for (int i = 0; i < m_state.m_numDisplay; i++)
@@ -481,44 +390,130 @@ namespace raysettings
         }
     }
 
-    void SettingsMenuState::update(const float &dt)
+    void SettingsWindow::Update()
     {
-        if (true)
+        //Scale components to the active resolution
+
+        if (WindowBox000Active)
         {
-            this->updateGui(dt);
+            SettingsState nextState = m_state;
+
+            WindowBox000Active = !GuiWindowBox(m_layout.m_layoutRecs[0], "SETTINGS") && !GuiButton(m_layout.m_layoutRecs[19], "Back");
+
+            GuiGroupBox(m_layout.m_layoutRecs[1], "VIDEO SETTINGS");
+            GuiLabel(m_layout.m_layoutRecs[3], "DISPLAY:");
+            GuiLabel(m_layout.m_layoutRecs[5], "VSYNC:");
+            GuiLabel(m_layout.m_layoutRecs[7], "RESOLUTION:");
+            GuiLabel(m_layout.m_layoutRecs[9], "WINDOW MODE:");
+            GuiGroupBox(m_layout.m_layoutRecs[10], "AUDIO SETTINGS");
+            nextState.m_masterVolumePercentage = GuiSlider(m_layout.m_layoutRecs[11], NULL, NULL, m_state.m_masterVolumePercentage, 0, 100);
+            GuiLabel(m_layout.m_layoutRecs[12], "MASTER:");
+            nextState.m_musicVolumePercentage = GuiSlider(m_layout.m_layoutRecs[13], NULL, NULL, m_state.m_musicVolumePercentage, 0, 100);
+            GuiLabel(m_layout.m_layoutRecs[14], "MUSIC:");
+            nextState.m_fxVolumePercentage = GuiSlider(m_layout.m_layoutRecs[15], NULL, NULL, m_state.m_fxVolumePercentage, 0, 100);
+            GuiLabel(m_layout.m_layoutRecs[16], "FX:");
+            nextState.m_vsyncActive = GuiCheckBox(m_layout.m_layoutRecs[4], NULL, m_state.m_vsyncActive);
+
+            
+
+
+                bool changeFound = false;
+
+            if (GuiDropdownBox(m_layout.m_layoutRecs[2], m_displayStrings.c_str(), &nextState.m_activeDisplay, DropdownBox002EditMode))
+            {
+                DropdownBox002EditMode = !DropdownBox002EditMode;
+            }
+
+            int resIndex = nextState.m_resolution - std::begin(c_resolutionPairs);
+            if (GuiDropdownBox(m_layout.m_layoutRecs[6], m_resolutionStrings.c_str(), &resIndex, DropdownBox006EditMode))
+            {
+                DropdownBox006EditMode = !DropdownBox006EditMode;
+            }
+            nextState.m_resolution = &(c_resolutionPairs[resIndex]);
+
+            int windowModeIndex = DropdownBox008Active;
+            if (GuiDropdownBox(m_layout.m_layoutRecs[8], c_windowModeStrings, &windowModeIndex, DropdownBox008EditMode))
+            {
+                DropdownBox008EditMode = !DropdownBox008EditMode;
+            }
+            nextState.m_windowMode = static_cast<WindowMode>(windowModeIndex);
+
+            //WORKAROUND: Render last to bring to front
+            if (DropdownBox002EditMode)
+            {
+                GuiDropdownBox(m_layout.m_layoutRecs[2], m_displayStrings.c_str(), &DropdownBox002Active, DropdownBox002EditMode);
+            }
+            if (DropdownBox006EditMode)
+            {
+                GuiDropdownBox(m_layout.m_layoutRecs[6], m_resolutionStrings.c_str(), &DropdownBox006Active, DropdownBox006EditMode);
+            }
+            if (DropdownBox008EditMode)
+            {
+                GuiDropdownBox(m_layout.m_layoutRecs[8], c_windowModeStrings, &DropdownBox008Active, DropdownBox008EditMode);
+            }
+
             UpdateState(nextState);
             UpdateFields();
         }
     }
 
-    SettingsState SettingsMenuState::GetState() const
+    void SettingsWindow::Show(bool p_shouldShow)
+    {
+        WindowBox000Active = p_shouldShow;
+    }
+
+    SettingsWindowLayout::SettingsWindowLayout(uint32 const p_targetWidth, uint32 const p_targetHeight)
+    {
+        float const scaleX = p_targetWidth / 1920.f;
+        float const scaleY = p_targetHeight / 1080.f;
+
+        m_anchor01.x *= scaleX;
+        m_anchor01.y *= scaleY;
+
+        m_anchor02.x *= scaleX;
+        m_anchor02.y *= scaleY;
+
+        m_anchor03.x *= scaleX;
+        m_anchor03.y *= scaleY;
+
+        for (Rectangle &rec : m_layoutRecs)
+        {
+            rec.x *= scaleX;
+            rec.width *= scaleX;
+            rec.y *= scaleY;
+            rec.height *= scaleY;
+        }
+    }
+
+    SettingsState SettingsWindow::GetState() const
     {
         return m_state;
     }
 
-    void SettingsMenuState::LoadState(SettingsState p_state)
+    void SettingsWindow::LoadState(SettingsState p_state)
     {
         UpdateState(p_state);
         UpdateFields();
     }
 
-    float SettingsMenuState::GetMasterAudioLevel() const
+    float SettingsWindow::GetMasterAudioLevel() const
     {
         return m_state.m_masterVolumePercentage;
     }
 
-    float SettingsMenuState::GetMusicAudioLevel() const
+    float SettingsWindow::GetMusicAudioLevel() const
     {
         return m_state.m_musicVolumePercentage;
     }
 
-    float SettingsMenuState::GetFXAudioLevel() const
+    float SettingsWindow::GetFXAudioLevel() const
     {
         return m_state.m_fxVolumePercentage;
     }
 
-    UIntPair SettingsMenuState::GetResolution() const
+    UIntPair SettingsWindow::GetResolution() const
     {
         return *m_state.m_resolution;
     }
+
 }

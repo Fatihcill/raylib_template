@@ -11,7 +11,6 @@ private:
     float bwidth, bheight;
     //Variables
     Texture backgroundTexture;
-
     //Functions
     void initVariables();
     void initFonts();

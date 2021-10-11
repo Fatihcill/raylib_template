@@ -2,18 +2,18 @@
 #define STATE_H
 
 #include "stdafx.hpp"
+#include "SettingsWindow.hpp"
 
 class State;
 
 class StateData
 {
 public:
-    StateData(){};
-
     //Variables
     std::stack<State *> *states;
-    short window_width;
-    short window_height;
+    //short window_width;
+    //short window_height;
+    raysettings::SettingsWindow windowSettings{};
 };
 
 class State

@@ -41,7 +41,7 @@ void GameState::update(const float &dt)
 
 void GameState::render()
 {
-    ClearBackground(RAYWHITE);
+    ClearBackground(GRAY);
 
     //draw player
     player.draw();

@@ -8,7 +8,7 @@ class GameState : public State
 {
 private:
     //Player Variables
-    Player player{Vector2{this->stateData->window_width / 3.f , this->stateData->window_width / 3.f}};
+    Player player{Vector2{0, 0}};
 
     //Functions
     void initVariables();

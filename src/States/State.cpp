@@ -6,6 +6,8 @@ State::State(StateData *state_data)
     this->states = state_data->states;
     this->quit = false;
     this->paused = false;
+    this->stateData->windowSettings.InitState();
+    this->stateData->windowSettings.Show(false);
 }
 
 State::~State()

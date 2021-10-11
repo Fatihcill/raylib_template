@@ -32,4 +32,5 @@ void Player::move()
 void Player::draw()
 {
     DrawTextureV(player_tex, worldpos, WHITE); 
+    DrawRectangleLines(worldpos.x, worldpos.y, player_tex.width, player_tex.height, RED);
 }

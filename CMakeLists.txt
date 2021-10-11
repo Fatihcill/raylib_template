@@ -16,19 +16,22 @@ add_executable(${PROJECT_NAME}
   "src/main.cpp" 
   "src/Game.cpp"
     
+
   "src/States/State.cpp"
   "src/States/MainMenuState.cpp"
   "src/States/GameState.cpp"
-  "src/States/SettingsMenuState.cpp"
 
-    "src/Entities/Entity.cpp"
-    "src/Entities/Player.cpp"
+  "src/Settings/SettingsWindow.cpp"
+  "src/Settings/WinWrapper.cpp"
+
+  "src/Entities/Player.cpp"
   )
 
 target_include_directories(${PROJECT_NAME}
   PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/States"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Settings"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Entities"
 )
 
