@@ -13,18 +13,11 @@ namespace raysettings
     {
     #ifdef __unix__
     #elif defined(_WIN32) || defined(WIN32)
-            if (OS_Windows)
-            {
-                HWND window = (HWND)winHandle;
-                RECT area;
-                GetClientRect(window, &area);
-
-                p_out_width = area.right;
-                p_out_height = area.bottom;
-            }
-            else if (!OS_Windows)
-            {
-            }
+        HWND window = (HWND)winHandle;
+        RECT area;
+        GetClientRect(window, &area);
+        p_out_width = area.right;
+        p_out_height = area.bottom;
     #endif
     }
     
