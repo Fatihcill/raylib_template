@@ -3,6 +3,7 @@
 
 #include "State.hpp"
 #include "Player.hpp"
+#include "PauseWindow.hpp"
 
 class GameState : public State
 {
@@ -10,8 +11,11 @@ private:
     //Player Variables
     Player player{Vector2{0, 0}};
 
-    //Functions
-    void initVariables();
+    //setup pause
+    PauseWindow pauseWindow;
+        //Functions
+        void
+        initVariables();
     void initFonts();
 
     void initPlayers();

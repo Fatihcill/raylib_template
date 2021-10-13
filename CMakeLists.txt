@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME}
 
   "src/Settings/SettingsWindow.cpp"
   "src/Settings/WinWrapper.cpp"
+  "src/Pause/PauseWindow.cpp"
 
   "src/Entities/Player.cpp"
   )
@@ -32,6 +33,7 @@ target_include_directories(${PROJECT_NAME}
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/States"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Settings"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Pause"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Entities"
 )
 

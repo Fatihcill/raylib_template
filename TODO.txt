@@ -1,0 +1,11 @@
+bugs;
+1- state pause is not working
+
+todo
+1- pause window gui
+    a. Resume
+    b. Settings --> open settings window
+    c. Menu --> goes to menu
+2- keyinputs 
+3- gui for key controls  --> in settings menu
+4- full screen settings window

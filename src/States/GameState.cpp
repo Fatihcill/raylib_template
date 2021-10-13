@@ -37,6 +37,7 @@ void GameState::update(const float &dt)
 {
     this->updateInput(dt);
     this->updatePlayer();
+    pauseWindow.checkbutton(stateData);
 }
 
 void GameState::render()

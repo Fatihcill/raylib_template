@@ -35,3 +35,8 @@ void State::unpauseState()
 {
     this->paused = false;
 }
+
+void State::update(const float &dt) 
+{
+    std::cout << this->stateData->states->top() << std::endl;
+}

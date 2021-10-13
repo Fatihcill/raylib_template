@@ -1,18 +1,31 @@
 #include "WinWrapper.hpp"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+#ifdef __unix__
+#include <unistd.h>
+
+#elif defined(_WIN32) || defined(WIN32)
+#include <windows.h>
+#endif
 
 namespace raysettings
 {
     void GetWindowSize(void *winHandle, int &p_out_width, int &p_out_height)
     {
-        HWND window = (HWND)winHandle;
+    #ifdef __unix__
+    #elif defined(_WIN32) || defined(WIN32)
+            if (OS_Windows)
+            {
+                HWND window = (HWND)winHandle;
+                RECT area;
+                GetClientRect(window, &area);
 
-        RECT area;
-        GetClientRect(window, &area);
-
-        p_out_width = area.right;
-        p_out_height = area.bottom;
+                p_out_width = area.right;
+                p_out_height = area.bottom;
+            }
+            else if (!OS_Windows)
+            {
+            }
+    #endif
     }
+    
 }
