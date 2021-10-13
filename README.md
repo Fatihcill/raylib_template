@@ -13,4 +13,6 @@ raylib cmake template.
 I will update readme after finish the project
 
 
-SETTINGS Hooked up to [raysettings](https://github.com/swan-gh/raysettings)
+Tested in Linux Mint 20.2 Cinnamon and Windows 10
+
+SETTINGSWINDOW Hooked up to [raysettings](https://github.com/swan-gh/raysettings)
