@@ -4,7 +4,7 @@ class PauseWindow
 {
 private:
 public:
-    void checkbutton(StateData *currentStateData);
-    PauseWindow(/* args */);
+    void render(StateData *currentStateData);
+    PauseWindow();
     ~PauseWindow();
 };

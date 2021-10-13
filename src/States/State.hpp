@@ -23,7 +23,6 @@ protected:
     StateData *stateData;
     std::stack<State *> *states;
     bool quit;
-    bool paused;
 
     //Resources
     std::vector<Texture> textures;
@@ -33,6 +32,8 @@ protected:
 public:
     State(StateData *state_data);
     virtual ~State();
+    
+    bool paused;
 
     //Accessors
     const bool &getQuit() const;

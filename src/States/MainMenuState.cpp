@@ -13,7 +13,7 @@ MainMenuState::MainMenuState(StateData *state_data) : State(state_data)
 
 MainMenuState::~MainMenuState()
 {
-    //will be check
+    std::cout << "MAINMENU STATE FINISHED" << std::endl;
 }
 
 //Initializer functions
@@ -42,7 +42,6 @@ void MainMenuState::updateButtons()
     
     if (GuiButton((Rectangle){(this->stateData->windowSettings.GetResolution().x - bwidth) / 2.f, ((this->stateData->windowSettings.GetResolution().y - bheight) / 2.f) + (bheight * -1.5f), bwidth, bheight}, "Play"))
     {
-        std::cout << "GAME STARTING" << std::endl;
         this->states->push(new GameState(this->stateData));
     }
     //Settings the game

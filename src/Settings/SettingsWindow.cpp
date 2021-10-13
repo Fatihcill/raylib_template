@@ -455,6 +455,7 @@ namespace raysettings
             UpdateState(nextState);
             UpdateFields();
         }
+   
     }
 
     void SettingsWindow::Show(bool p_shouldShow)

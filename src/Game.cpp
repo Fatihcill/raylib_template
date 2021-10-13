@@ -40,10 +40,6 @@ void Game::initWindow()
 void Game::initStates()
 {
     this->stateData.states = &this->states;
-    //std::cout << this->stateData.windowSettings.GetResolution().x << std::endl;
-    //this->stateData.windowSettings.Update();
-    //this->stateData.window_height = this->window_height;
-    //this->stateData.window_width = this->window_width;
     this->states.push(new MainMenuState(&this->stateData));
 }
 
@@ -65,15 +61,16 @@ void Game::update()
     if (!this->states.empty())
     {
         this->states.top()->update(this->dt);
-
         if (this->states.top()->getQuit())
         {
             this->states.top()->endState();
             delete this->states.top();
             this->states.pop();
             if (this->states.empty())
+            {
                 EndDrawing();
                 exit(0);
+            }
         }
     }
     //Application end
