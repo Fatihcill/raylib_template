@@ -1,8 +1,4 @@
 todo
-1- pause window gui
-    a. Resume
-    b. Settings --> open settings window
-    c. Menu --> goes to menu
-2- keyinputs 
-3- gui for key controls  --> in settings menu
-4- full screen settings window
+1- keyinputs 
+2- gui for key controls  --> in settings menu
+3- settings window resize for full screen 
