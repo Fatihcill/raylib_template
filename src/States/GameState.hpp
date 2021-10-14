@@ -13,11 +13,9 @@ private:
 
     //setup pause
     PauseWindow pauseWindow;
-        //Functions
-        void
-        initVariables();
+    //Functions
+    void initVariables();
     void initFonts();
-
     void initPlayers();
 
 public:

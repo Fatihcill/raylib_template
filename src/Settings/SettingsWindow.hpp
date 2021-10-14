@@ -67,32 +67,33 @@ namespace raysettings
     struct SettingsWindowLayout
     {
         Vector2 m_anchor01 = {50, 50};
-        Vector2 m_anchor02 = {100, 125};
-        Vector2 m_anchor03 = {800, 125};
+        Vector2 m_anchor02 = {200, 125};
+        Vector2 m_anchor03 = {200, 540};
 
         Rectangle m_layoutRecs[20] = {
-            Rectangle{m_anchor01.x + 0, m_anchor01.y + 0, 1820, 350},
-            Rectangle{m_anchor02.x + 0, m_anchor02.y + 0, 675, 250},
-            Rectangle{m_anchor02.x + 125, m_anchor02.y + 25, 525, 25},
-            Rectangle{m_anchor02.x + 50, m_anchor02.y + 25, 50, 25},
-            Rectangle{m_anchor02.x + 125, m_anchor02.y + 75, 25, 25},
-            Rectangle{m_anchor02.x + 50, m_anchor02.y + 75, 90, 25},
-            Rectangle{m_anchor02.x + 125, m_anchor02.y + 125, 525, 25},
-            Rectangle{m_anchor02.x + 25, m_anchor02.y + 125, 75, 30},
-            Rectangle{m_anchor02.x + 125, m_anchor02.y + 175, 525, 25},
-            Rectangle{m_anchor02.x + 20, m_anchor02.y + 175, 80, 30},
-            Rectangle{m_anchor03.x + 0, m_anchor03.y + 0, 475, 250},
-            Rectangle{m_anchor03.x + 100, m_anchor03.y + 25, 350, 25},
-            Rectangle{m_anchor03.x + 25, m_anchor03.y + 25, 80, 25},
-            Rectangle{m_anchor03.x + 100, m_anchor03.y + 75, 350, 25},
-            Rectangle{m_anchor03.x + 25, m_anchor03.y + 75, 80, 25},
-            Rectangle{m_anchor03.x + 100, m_anchor03.y + 125, 350, 25},
-            Rectangle{m_anchor03.x + 25, m_anchor03.y + 125, 80, 25},
-            Rectangle{m_anchor03.x + 100, m_anchor03.y + 175, 350, 25},
-            Rectangle{m_anchor03.x + 25, m_anchor03.y + 175, 80, 25},
+            Rectangle{0, 0, 1920, 1080},                                // GuiWindowBox                 0
 
-            Rectangle{m_anchor03.x + 700, m_anchor03.y + 75, 235, 75}
+            Rectangle{m_anchor02.x, m_anchor02.y, 1520, 300},           // GuiGroupBox VIDEO SETTINGS   1
+            Rectangle{m_anchor02.x + 940, m_anchor02.y + 25, 530, 25},  // Gui drowdown DISPLAY         2
+            Rectangle{m_anchor02.x + 50, m_anchor02.y + 25, 50, 25},    // Label DISPLAY                3
+            Rectangle{m_anchor02.x + 1205, m_anchor02.y + 100, 25, 25}, // GuiCheckBox VSYNC            4
+            Rectangle{m_anchor02.x + 50, m_anchor02.y + 100, 90, 25},   // label VSYNC                  5
+            Rectangle{m_anchor02.x + 940, m_anchor02.y + 175, 530, 25}, // Gui drowdown RESOLUTION      6
+            Rectangle{m_anchor02.x + 25, m_anchor02.y + 175, 75, 30},   // label RESOLUTION             7
+            Rectangle{m_anchor02.x + 940, m_anchor02.y + 250, 530, 25}, // Gui drowdown WINDOW MODE     8
+            Rectangle{m_anchor02.x + 20, m_anchor02.y + 250, 80, 30},   // label WINDOW MODE            9
 
+            Rectangle{m_anchor03.x, m_anchor03.y, 1520, 225},           // GuiGroupBox AUDIO SETTINGS   10
+            Rectangle{m_anchor03.x + 940, m_anchor03.y + 25, 530, 25},  // GuiSlider m_masterVolume     11
+            Rectangle{m_anchor03.x + 25, m_anchor03.y + 25, 80, 25},    // GuiLabel  MASTER:            12
+            Rectangle{m_anchor03.x + 940, m_anchor03.y + 100, 530, 25}, // GuiSlider MUSIC              13
+            Rectangle{m_anchor03.x + 25, m_anchor03.y + 100, 80, 25},   // GuiLabel  MUSIC              14
+            Rectangle{m_anchor03.x + 940, m_anchor03.y + 175, 530, 25}, // GuiSlider m_layoutRecs       15
+            Rectangle{m_anchor03.x + 25, m_anchor03.y + 175, 80, 25},   // GuiLabel  FX:                16
+            Rectangle{m_anchor03.x + 940, m_anchor03.y + 250, 530, 25}, // NULL
+            Rectangle{m_anchor03.x + 25, m_anchor03.y + 250, 80, 25},   // NULL
+
+            Rectangle{1650, 990, 250, 75}                               // back button
         };
 
         SettingsWindowLayout(uint32 p_targetWidth, uint32 p_targetHeight);
