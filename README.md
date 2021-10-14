@@ -6,6 +6,9 @@ raylib cmake template.
 - Cmake
 
 ## Installation:
+You can just click the "Use this template" button. 
+
+Or
 ``` 
 git clone https://github.com/Fatihcil16/raylib_template.git 
 ```
