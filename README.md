@@ -10,10 +10,12 @@ raylib cmake template.
 git clone https://github.com/Fatihcil16/raylib_template.git 
 ```
 #### WARNING;
- - Check if the libs/raylib folder is empty, if it is, pull the raylib repo.
+ - Don't forget to check submodules.
     ```
-    git clone https://github.com/raysan5/raylib.git
+    git submodule sync
+    git submodule update --init --recursive
     ```
+    it may take a few minutes.
 
 ## Platforms
 Tested in;
