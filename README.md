@@ -10,9 +10,6 @@ git clone https://github.com/Fatihcil16/raylib_template.git
 
 raylib cmake template.
 
-I will update readme after finish the project
-
-
 Tested in Linux Mint 20.2 Cinnamon and Windows 10
 
 SETTINGSWINDOW Hooked up to [raysettings](https://github.com/swan-gh/raysettings)
