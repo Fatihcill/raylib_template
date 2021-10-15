@@ -11,7 +11,6 @@ PauseWindow::~PauseWindow()
 
 void PauseWindow::render(StateData *currentStateData) 
 {
-
     if (currentStateData->states->top()->paused)
     {
         GuiFade(0.5f);

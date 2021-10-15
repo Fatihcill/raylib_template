@@ -4,20 +4,10 @@ void GameState::initVariables()
 {
 }
 
-void GameState::initFonts()
-{
-}
-
-void GameState::initPlayers()
-{
-}
-
 GameState::GameState(StateData *state_data) : State(state_data)
 {
-    std::cout << "GAME STARTING" << std::endl;
+    std::cout << "GAME IS STARTING" << std::endl;
     this->initVariables();
-    this->initFonts();
-    this->initPlayers();
 }
 
 GameState::~GameState()
@@ -30,18 +20,13 @@ void GameState::updateInput(const float &dt)
     player.controls();
 }
 
-void GameState::updatePlayer()
-{
-    player.move();
-}
-
 void GameState::update(const float &dt)
 {
     if (this->paused)
         return; //if the game paused. its return.
 
     this->updateInput(dt);
-    this->updatePlayer();
+    player.move();
 }
 
 void GameState::render()

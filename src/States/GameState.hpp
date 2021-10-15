@@ -1,5 +1,5 @@
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#ifndef GAMESTATE_HPP
+#define GAMESTATE_HPP
 
 #include "State.hpp"
 #include "Player.hpp"
@@ -8,27 +8,19 @@
 class GameState : public State
 {
 private:
-    //Player Variables
-    Player player{Vector2{0, 0}};
-
     //setup pause
     PauseWindow pauseWindow;
     //Functions
     void initVariables();
-    void initFonts();
-    void initPlayers();
+    //Custom variables
+    Player player{Vector2{0, 0}};
 
 public:
     GameState(StateData *state_data);
     virtual ~GameState();
-
     //Functions
     void updateInput(const float &dt);
-
-    void updatePlayer();
-
     void update(const float &dt);
-
     void render();
 };
 
