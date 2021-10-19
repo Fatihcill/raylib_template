@@ -39,7 +39,7 @@ void MainMenuState::updateButtons()
     //setup basic menu
         //New game
             //if (GuiButton((Rectangle){(this->stateData->window_width - bwidth) / 2.f, ((this->stateData->window_height - bheight) / 2.f) + (bheight * -1.5f), bwidth, bheight}, "Play"))
-    
+
     if (GuiButton((Rectangle){(this->stateData->windowSettings.GetResolution().x - bwidth) / 2.f, ((this->stateData->windowSettings.GetResolution().y - bheight) / 2.f) + (bheight * -1.5f), bwidth, bheight}, "Play"))
     {
         this->states->push(new GameState(this->stateData));
