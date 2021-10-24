@@ -13,7 +13,6 @@ private:
     Texture backgroundTexture;
     //Functions
     void initVariables();
-    void initFonts();
 
 public:
     MainMenuState(StateData *state_data);
@@ -23,6 +22,8 @@ public:
     void updateInput(const float &dt);
     void updateButtons();
     void update(const float &dt);
+
+    void draw();
     void render();
 };
 

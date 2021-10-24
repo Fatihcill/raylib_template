@@ -22,10 +22,10 @@ add_executable(${PROJECT_NAME}
   "src/States/GameState.cpp"
 
   "src/Settings/SettingsWindow.cpp"
-  "src/Settings/WinWrapper.cpp"
   "src/Pause/PauseWindow.cpp"
 
   "src/Entities/Player.cpp"
+  "src/Entities/CameraManager2D.cpp"
   )
 
 target_include_directories(${PROJECT_NAME}

@@ -7,7 +7,6 @@
 MainMenuState::MainMenuState(StateData *state_data) : State(state_data)
 {
     this->initVariables();
-    this->initFonts();
 
 }
 
@@ -24,22 +23,15 @@ void MainMenuState::initVariables()
     bheight = 50;
 }
 
-void MainMenuState::initFonts()
-{
-
-}
-
 void MainMenuState::updateInput(const float &dt)
 {
-
+    // controls etc..
 }
 
 void MainMenuState::updateButtons()
 {
     //setup basic menu
-        //New game
-            //if (GuiButton((Rectangle){(this->stateData->window_width - bwidth) / 2.f, ((this->stateData->window_height - bheight) / 2.f) + (bheight * -1.5f), bwidth, bheight}, "Play"))
-
+    //move new state
     if (GuiButton((Rectangle){(this->stateData->windowSettings.GetResolution().x - bwidth) / 2.f, ((this->stateData->windowSettings.GetResolution().y - bheight) / 2.f) + (bheight * -1.5f), bwidth, bheight}, "Play"))
     {
         this->states->push(new GameState(this->stateData));
@@ -56,28 +48,17 @@ void MainMenuState::updateButtons()
         this->endState();
     }
     this->stateData->windowSettings.Update();
-    /*
-    if (GuiButton((Rectangle){50, 50, bwidth, bheight}, "Play"))
-    {
-        std::cout << "GAME STARTING" << std::endl;
-        this->states->push(new GameState(this->stateData));
-    }
-    //Settings the game
-    if (GuiButton((Rectangle){200, 200, bwidth, bheight}, "Settings"))
-    {
-        std::cout << "GAME SETTINGS" << std::endl;
-
-    }
-    //Quit the game
-    if (GuiButton((Rectangle){400, 400, bwidth, bheight}, "Quit"))
-    {
-        this->endState();
-    }*/
 }
 
 void MainMenuState::update(const float &dt)
 {
     this->updateInput(dt);
+}
+
+void MainMenuState::draw()
+{
+    //Draw if you use Camera 
+    // Example in GameState.cpp
 }
 
 void MainMenuState::render()

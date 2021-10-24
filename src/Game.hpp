@@ -36,6 +36,7 @@ public:
     void update();
 
     //Render
+    void draw();
     void render();
 
     //Core
