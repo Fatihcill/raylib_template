@@ -1,4 +1,3 @@
 todo
 1- keyinputs 
 2- gui for key controls  --> in settings menu
-3- render / camera 
